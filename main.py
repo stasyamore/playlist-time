@@ -56,3 +56,11 @@ def get_duration(playlist: Iterable, n: int) -> timedelta:
         songs = parse_playlist(playlist)
     else:
         raise ValueError("Неподдерживаемый формат плейлиста")
+    
+if n > len(songs):
+    raise ValueError("Запрашиваемое количество песен превышает количество доступных песен")
+    selected_songs = random.sample(songs, n)
+    total_duration = sum(duration for _, duration in selected_songs)
+    return timedelta(hours=int(total_duration // 60), minutes=int(total_duration))
+
+    
