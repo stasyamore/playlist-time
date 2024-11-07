@@ -37,3 +37,12 @@ Resonance 3.32
 import random
 from datetime import timedelta
 from typing import Iterable, Any
+def parse_playlist(playlist: str) -> list:
+    songs = []
+    for line in playlist.strip().split(''):
+        parts = line.rsplit('', 1)
+        if len(parts) == 2:
+            title = parts[0]
+            duration = float(parts[1])
+            songs.append((title, duration))
+    return songs
