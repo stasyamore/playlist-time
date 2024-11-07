@@ -52,3 +52,15 @@ def parse_playlist(playlist: str) -> list:
 
  def get_duration(playlist: Iterable, n: int) -> timedelta:
     """Возвращает общее время звучания n случайных песен из плейлиста."""
+    if isinstance(playlist, tuple) and len(playlist) == 2:
+        titles, durations = playlist
+        songs = list(zip(titles, durations))
+    elif isinstance(playlist, str):
+        songs = parse_playlist(playlist)
+    else:
+        raise ValueError("Неподдерживаемый формат плейлиста")
+    
+    
+
+if n > len(songs):
+        raise ValueError
