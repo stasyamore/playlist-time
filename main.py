@@ -89,3 +89,8 @@ def get_random_songs(playlist: Iterable, n: int) -> tuple:
     else:
         songs, durations = playlist
 
+if n > len(songs):
+        n = len(songs)  
+
+random_indices = random.sample(range(len(songs)), n)
+return [ songs [i] for i in random_indices ], [ durations[i] for i in random_indices ]
