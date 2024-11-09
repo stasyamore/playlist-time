@@ -94,3 +94,9 @@ if n > len(songs):
 
 random_indices = random.sample(range(len(songs)), n)
 return [ songs [i] for i in random_indices ], [ durations[i] for i in random_indices ]
+
+
+def get_duration(playlist: Iterable, n: int) -> Any:
+    random_songs, random_durations = get_random_songs(playlist, n)
+    total_duration = calculate_total_duration(random_durations)
+    return total_duration
