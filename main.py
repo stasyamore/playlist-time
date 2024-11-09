@@ -58,10 +58,13 @@ def get_duration(playlist: Iterable, n: int) -> timedelta:
     else:
         raise ValueError("Неподдерживаемый формат плейлиста")
 
+    
+
 if n > len(songs):
     raise ValueError("Запрашиваемое количество песен превышает количество доступных песен")
     selected_songs = random.sample(songs, n)
     total_duration = sum(duration for _, duration in selected_songs)
+
     
 
 def parse_playlist_string(playlist: str) -> tuple:
@@ -69,7 +72,6 @@ def parse_playlist_string(playlist: str) -> tuple:
     songs = []
     durations = []
     
-
     for line in playlist.strip().split(''):
         # Разделяем название и длительность
         parts = line.rsplit(' ', 1)
@@ -77,3 +79,13 @@ def parse_playlist_string(playlist: str) -> tuple:
             song, duration = parts
             songs.append(song)
             durations.append(float(duration))
+    return tuple(songs), tuple(durations)
+
+
+def get_random_songs(playlist: Iterable, n: int) -> tuple:
+    """Получает n случайных песен из плейлиста, возвращая их названия и длительности."""
+    if isinstance(playlist, str):
+        songs, durations = parse_playlist_string(playlist)
+    else:
+        songs, durations = playlist
+
